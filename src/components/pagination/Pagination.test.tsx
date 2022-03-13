@@ -1,4 +1,7 @@
 import { render, screen } from '@testing-library/preact';
+import { vi } from 'vitest';
+
+// @ts-ignore
 import style from './button.module.css';
 
 import Pagination from './Pagination';

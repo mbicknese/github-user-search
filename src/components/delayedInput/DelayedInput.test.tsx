@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/preact';
-import DelayedInput from './DelayedInput';
+import { vi } from 'vitest';
 
-const noop = () => {};
+import DelayedInput from './DelayedInput';
 
 describe('<DelayedInput />', () => {
     it('awaits delay before emitting', async () => {

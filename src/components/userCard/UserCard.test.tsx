@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/preact';
+
 import UserCard from './UserCard';
 import { User } from '../../models';
 
