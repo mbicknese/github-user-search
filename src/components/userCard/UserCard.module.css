@@ -1,0 +1,86 @@
+.this {
+    --_height: 6rem;
+    --_transition-speed: 200ms;
+
+    position: relative;
+    display: grid;
+    padding: var(--size-2);
+    background: var(--surface-2);
+    box-shadow: var(--shadow-2);
+    gap: var(--size-2);
+    grid-template: auto 1fr 1fr / minmax(var(--size-9), 1fr) 4fr 4fr minmax(var(--size-9), 1fr);
+    grid-template-areas:
+        "image username username username"
+        "image quote    quote    repos"
+        "image bio      bio      stars";
+
+
+    & img {
+        border-radius: 100%;
+        object-fit: cover;
+        grid-area: image;
+        aspect-ratio: 1 / 1;
+    }
+
+    & blockquote {
+        font-weight: var(--font-weight-7);
+        position: relative;
+        padding: 0 var(--size-4);
+        color: var(--text-3);
+        border: none;
+        grid-area: quote;
+
+        &::before {
+            font-size: var(--font-size-6);
+            position: absolute;
+            top: calc(var(--font-size-6) / -2);
+            left: 0;
+
+            content: "\"";
+            color: var(--text-2);
+        }
+
+        &::after {
+            font-size: var(--font-size-6);
+            position: absolute;
+            right: 0;
+            bottom: calc(var(--font-size-6) * -1);
+
+            content: "\"";
+            color: var(--text-2);
+        }
+    }
+
+    & a {
+        &::after {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: '';
+        }
+    }
+}
+
+.bio {
+    font-size: var(--font-size-0);
+    grid-area: bio;
+}
+
+.star-count {
+    grid-area: stars;
+
+    & span {
+        color: var(--brand);
+    }
+}
+
+.repo-count {
+    grid-area: repos;
+
+    & span {
+        color: var(--brand);
+    }
+}

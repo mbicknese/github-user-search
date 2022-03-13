@@ -1,2 +1,28 @@
 @import "open-props/postcss/style";
 @import "open-props/postcss/normalize";
+
+@media (--OSlight) {
+    :where(html) {
+        --brand: var(--blue-7);
+
+        --surface-1: white;
+        --surface-2: var(--gray-1);
+        --surface-3: var(--gray-3);
+        --text-1: var(--gray-8);
+        --text-2: var(--gray-6);
+        --text-3: var(--gray-5);
+        color-scheme: light;
+    }
+}
+
+@media (--OSdark) {
+    :where(html) {
+        --brand: var(--blue-7);
+
+        --surface-3: var(--gray-9);
+        --text-1: var(--gray-0);
+        --text-2: var(--gray-2);
+        --text-3: var(--gray-3);
+        color-scheme: dark;
+    }
+}

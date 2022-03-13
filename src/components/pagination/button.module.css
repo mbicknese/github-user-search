@@ -1,0 +1,57 @@
+.this {
+    --_highlight: var(--surface-3);
+
+    color: var(--text-1);
+    border: 1px solid var(--_highlight);
+    border-radius: var(--radius-2);
+    background: var(--surface-3);
+
+    &:hover:not([disabled]) {
+        --_highlight: var(--brand);
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: var(--text-2);
+    }
+}
+
+.active {
+    background: var(--brand);
+}
+
+.previous {
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+        position: absolute;
+        top: .65rem;
+        left: .3rem;
+        display: block;
+        width: .5rem;
+        height: .5rem;
+        content: ' ';
+        transform: rotate(-45deg);
+        border-top: 1px solid var(--text-1);
+        border-left: 1px solid var(--text-1);
+    }
+}
+
+.next {
+    position: relative;
+    padding-right: 1rem;
+
+    &::before {
+        position: absolute;
+        top: .65rem;
+        right: .3rem;
+        display: block;
+        width: .5rem;
+        height: .5rem;
+        content: ' ';
+        transform: rotate(135deg);
+        border-top: 1px solid var(--text-1);
+        border-left: 1px solid var(--text-1);
+    }
+}

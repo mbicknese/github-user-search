@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 import { client } from './apollo';
 import { SearchResultItemConnection, SearchType } from './schema';
 
@@ -26,14 +26,16 @@ const search =
                 query,
                 type,
                 first: 5,
-                after: 'Y3Vyc29yOjU=',
+                after: null,
             },
         });
-        if (result.getCurrentResult().error) {
+        const currentResult = await result.result();
+
+        if (currentResult.error) {
             throw new Error('We need to figure out some proper UX here.');
         }
 
-        return result.getCurrentResult().data.search;
+        return currentResult.data.search;
     };
 
 export const searchUser = search(SearchType.User);

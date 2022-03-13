@@ -1,0 +1,4 @@
+.this {
+    display: flex;
+    gap: var(--size-2);
+}
