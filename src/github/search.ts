@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client/core';
-import { client } from './apollo';
+import { client } from './client';
 import { SearchResultItemConnection, SearchType } from './schema';
 
 const search =
@@ -38,4 +38,4 @@ const search =
         return currentResult.data.search;
     };
 
-export const searchUser = search(SearchType.User);
+export const searchUsers = search(SearchType.User);
