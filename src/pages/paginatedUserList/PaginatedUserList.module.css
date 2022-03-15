@@ -1,0 +1,13 @@
+.this {
+    width: var(--size-content-3);
+    margin: var(--size-3) auto;
+
+    & section {
+        display: grid;
+        gap: var(--size-3);
+    }
+}
+
+.intro {
+    margin-bottom: var(--size-3);
+}

@@ -1,6 +1,10 @@
 @import "open-props/postcss/style";
 @import "open-props/postcss/normalize";
 
+:where(html) {
+    --size-content-4: 70ch;
+}
+
 @media (--OSlight) {
     :where(html) {
         --brand: var(--blue-7);

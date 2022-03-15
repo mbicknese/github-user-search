@@ -9,6 +9,7 @@ export type PaginationProps = {
     current: number;
     perPage: number;
     onPageChange: (newPage: number) => void;
+    pageJump?: number;
 };
 
 /**
@@ -17,27 +18,31 @@ export type PaginationProps = {
  * Component emits a page change on user input, controlling parent component needs to handle the change and feed the
  * current page back to this navigation component. Actual browsing and handling data has been decoupled to allow for
  * more freedom in composition.
- *
- * @todo: handle case with too many pages
  */
-const Pagination = ({total, current, perPage, onPageChange}: PaginationProps) => {
+const Pagination = ({ total, current, perPage, onPageChange, pageJump = 2 }: PaginationProps) => {
     const pageCount = Math.ceil(total / perPage);
+
+    const numberButtonsForJumping = (start: number, end: number) => {
+        return Array.from(new Array(end - start), (_, n) => (
+            <NumberButton
+                onClick={() => onPageChange(n + start)}
+                number={n + start}
+                current={current}
+            />
+        ));
+    };
 
     return (
         <nav class={style.this}>
-            <PrevButton disabled={current === 1} onClick={() => onPageChange(current - 1)}/>
-            {Array.from(new Array(pageCount), (_, n) => n + 1).map((n) => (
-                <NumberButton
-                    onClick={() => onPageChange(n)}
-                    number={n}
-                    current={current}
-                    key={n}
-                />
-            ))}
-            <NextButton
-                disabled={current === pageCount}
-                onClick={() => onPageChange(current + 1)}
-            />
+            <PrevButton disabled={current === 1} onClick={() => onPageChange(current - 1)} />
+            {current - pageJump > 1 ? '...' : null}
+            {current > 1 ? numberButtonsForJumping(Math.max(current - pageJump, 1), current) : null}
+            <NumberButton onClick={() => {}} number={current} current={current} />
+            {current < pageCount
+                ? numberButtonsForJumping(current + 1, Math.min(current + pageJump, pageCount) + 1)
+                : null}
+            {current + pageJump < pageCount ? '...' : null}
+            <NextButton disabled={current >= pageCount} onClick={() => onPageChange(current + 1)} />
         </nav>
     );
 };

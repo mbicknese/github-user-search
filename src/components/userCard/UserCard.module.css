@@ -8,7 +8,7 @@
     background: var(--surface-2);
     box-shadow: var(--shadow-2);
     gap: var(--size-2);
-    grid-template: auto 1fr 1fr / minmax(var(--size-9), 1fr) 4fr 4fr minmax(var(--size-9), 1fr);
+    grid-template: auto auto auto / minmax(var(--size-9), 1fr) 4fr 4fr minmax(var(--size-11), 1fr);
     grid-template-areas:
         "image username username username"
         "image quote    quote    repos"
@@ -25,7 +25,11 @@
     & blockquote {
         font-weight: var(--font-weight-7);
         position: relative;
+        display: block;
+        overflow-x: clip;
         padding: 0 var(--size-4);
+        white-space: nowrap;
+        text-overflow: ellipsis;
         color: var(--text-3);
         border: none;
         grid-area: quote;
@@ -61,6 +65,10 @@
             left: 0;
             content: '';
         }
+    }
+
+    & h2 {
+        grid-area: username;
     }
 }
 

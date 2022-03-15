@@ -5,6 +5,8 @@ import {useEffect} from 'preact/compat';
 import {fromEvent} from 'rxjs';
 import {debounceTime, map} from 'rxjs/operators';
 
+import style from './DelayedInput.module.css';
+
 /**
  * Magic number I've come up with.
  *
@@ -16,12 +18,13 @@ const defaultDelay = 300;
 export type DelayedInputProps = {
     onInput: (value: string) => void;
     delay?: number;
+    placeholder?: string;
 };
 
 /**
  * Like a normal text input, but it delays emitting input.
  */
-const DelayedInput = ({ onInput, delay = defaultDelay }: DelayedInputProps) => {
+const DelayedInput = ({ onInput, delay = defaultDelay, placeholder }: DelayedInputProps) => {
     const ref = createRef();
     useEffect(() => {
         const input$ = fromEvent(ref.current, 'input');
@@ -34,7 +37,7 @@ const DelayedInput = ({ onInput, delay = defaultDelay }: DelayedInputProps) => {
             .subscribe(onInput);
     }, []);
 
-    return <input type="text" ref={ref} />;
+    return <input type="text" ref={ref} class={style.this} placeholder={placeholder} />;
 };
 
 export default DelayedInput;
