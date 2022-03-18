@@ -52,7 +52,8 @@ const PaginatedUserList = () => {
                 A "simple" tool to search GitHub users. Provided search query will be tried to match
                 some fields, as dictated by GitHub. Under the hood it uses the GraphQL API.
             </p>
-            <DelayedInput onInput={handleSearchChange} placeholder="search" />
+            <label for="search-field">Enter a search query</label>
+            <DelayedInput onInput={handleSearchChange} placeholder="search" id="search-field" />
 
             {users.length > 0 ? (
                 <section>
@@ -71,7 +72,7 @@ const PaginatedUserList = () => {
                     />
                 </section>
             ) : loading ? (
-                <p>loading ...</p>
+                <p aria-role="status">loading ...</p>
             ) : query ? (
                 <p>No results</p>
             ) : (

@@ -1,10 +1,20 @@
 .this {
     width: var(--size-content-3);
     margin: var(--size-3) auto;
+    padding-bottom: var(--size-3);
 
     & section {
         display: grid;
         gap: var(--size-3);
+    }
+
+    & label {
+        display: none;
+    }
+
+    & nav {
+        display: flex;
+        justify-content: center;
     }
 }
 

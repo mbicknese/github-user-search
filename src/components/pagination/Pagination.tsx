@@ -35,13 +35,13 @@ const Pagination = ({ total, current, perPage, onPageChange, pageJump = 2 }: Pag
     return (
         <nav class={style.this}>
             <PrevButton disabled={current === 1} onClick={() => onPageChange(current - 1)} />
-            {current - pageJump > 1 ? '...' : null}
+            {current - pageJump > 1 ? <span>...</span> : null}
             {current > 1 ? numberButtonsForJumping(Math.max(current - pageJump, 1), current) : null}
             <NumberButton onClick={() => {}} number={current} current={current} />
             {current < pageCount
                 ? numberButtonsForJumping(current + 1, Math.min(current + pageJump, pageCount) + 1)
                 : null}
-            {current + pageJump < pageCount ? '...' : null}
+            {current + pageJump < pageCount ? <span>...</span> : null}
             <NextButton disabled={current >= pageCount} onClick={() => onPageChange(current + 1)} />
         </nav>
     );

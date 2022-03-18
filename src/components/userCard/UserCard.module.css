@@ -1,19 +1,15 @@
 .this {
-    --_height: 6rem;
-    --_transition-speed: 200ms;
-
     position: relative;
     display: grid;
     padding: var(--size-2);
     background: var(--surface-2);
     box-shadow: var(--shadow-2);
-    gap: var(--size-2);
+    gap: var(--size-3);
     grid-template: auto auto auto / minmax(var(--size-9), 1fr) 4fr 4fr minmax(var(--size-11), 1fr);
     grid-template-areas:
         "image username username username"
         "image quote    quote    repos"
         "image bio      bio      stars";
-
 
     & img {
         border-radius: 100%;
@@ -26,7 +22,7 @@
         font-weight: var(--font-weight-7);
         position: relative;
         display: block;
-        overflow-x: clip;
+        overflow: hidden;
         padding: 0 var(--size-4);
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -37,7 +33,7 @@
         &::before {
             font-size: var(--font-size-6);
             position: absolute;
-            top: calc(var(--font-size-6) / -2);
+            top: calc(var(--font-size-6) / -2.5);
             left: 0;
 
             content: "\"";
@@ -48,7 +44,7 @@
             font-size: var(--font-size-6);
             position: absolute;
             right: 0;
-            bottom: calc(var(--font-size-6) * -1);
+            bottom: calc(var(--font-size-6) * -0.75);
 
             content: "\"";
             color: var(--text-2);
@@ -65,9 +61,14 @@
             left: 0;
             content: '';
         }
+
+        &:focus {
+            text-decoration: underline;
+        }
     }
 
     & h2 {
+        font-size: var(--font-size-4);
         grid-area: username;
     }
 }
@@ -83,6 +84,19 @@
     & span {
         color: var(--brand);
     }
+}
+
+.me::before {
+    --_faux-border-size: -2px;
+    position: absolute;
+    z-index: -1;
+    top: var(--_faux-border-size);
+    right: var(--_faux-border-size);
+    bottom: var(--_faux-border-size);
+    left: var(--_faux-border-size);
+    display: block;
+    content: ' ';
+    background: var(--gradient-1);
 }
 
 .repo-count {

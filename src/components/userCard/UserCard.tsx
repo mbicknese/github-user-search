@@ -1,15 +1,16 @@
 import style from './UserCard.module.css';
 import { User } from '../../models';
+import classNames from 'classnames';
 
 export type UserCardProps = {
     user: User;
 };
 
 const UserCard = ({ user }: UserCardProps) => (
-    <article class={style.this}>
+    <article class={classNames(style.this, { [style.me]: user.login === 'mbicknese' })}>
         {user.avatar ? <img src={user.avatar} alt={`Avatar image of ${user.name}`} /> : null}
         <h2>
-            <a href={`https://github.com/${user.login}`} rel="external">
+            <a href={`https://github.com/${user.login}`} rel="external" tabIndex={0}>
                 {user.name}
             </a>
         </h2>

@@ -17,6 +17,7 @@ const defaultDelay = 300;
 
 export type DelayedInputProps = {
     onInput: (value: string) => void;
+    id?: string;
     delay?: number;
     placeholder?: string;
 };
@@ -24,7 +25,7 @@ export type DelayedInputProps = {
 /**
  * Like a normal text input, but it delays emitting input.
  */
-const DelayedInput = ({ onInput, delay = defaultDelay, placeholder }: DelayedInputProps) => {
+const DelayedInput = ({ onInput, delay = defaultDelay, placeholder, id }: DelayedInputProps) => {
     const ref = createRef();
     useEffect(() => {
         const input$ = fromEvent(ref.current, 'input');
@@ -37,7 +38,17 @@ const DelayedInput = ({ onInput, delay = defaultDelay, placeholder }: DelayedInp
             .subscribe(onInput);
     }, []);
 
-    return <input type="text" ref={ref} class={style.this} placeholder={placeholder} />;
+    return (
+        <input
+            type="text"
+            ref={ref}
+            class={style.this}
+            placeholder={placeholder}
+            id={id}
+            name={id}
+            tabIndex={0}
+        />
+    );
 };
 
 export default DelayedInput;
