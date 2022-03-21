@@ -20,12 +20,19 @@ export type DelayedInputProps = {
     id?: string;
     delay?: number;
     placeholder?: string;
+    role?: 'search';
 };
 
 /**
  * Like a normal text input, but it delays emitting input.
  */
-const DelayedInput = ({ onInput, delay = defaultDelay, placeholder, id }: DelayedInputProps) => {
+const DelayedInput = ({
+    onInput,
+    delay = defaultDelay,
+    placeholder,
+    id,
+    role,
+}: DelayedInputProps) => {
     const ref = createRef();
     useEffect(() => {
         const input$ = fromEvent(ref.current, 'input');
@@ -47,6 +54,7 @@ const DelayedInput = ({ onInput, delay = defaultDelay, placeholder, id }: Delaye
             id={id}
             name={id}
             tabIndex={0}
+            role={role}
         />
     );
 };

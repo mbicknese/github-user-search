@@ -53,7 +53,12 @@ const PaginatedUserList = () => {
                 some fields, as dictated by GitHub. Under the hood it uses the GraphQL API.
             </p>
             <label for="search-field">Enter a search query</label>
-            <DelayedInput onInput={handleSearchChange} placeholder="search" id="search-field" />
+            <DelayedInput
+                onInput={handleSearchChange}
+                placeholder="search"
+                id="search-field"
+                role="search"
+            />
 
             {users.length > 0 ? (
                 <section>
